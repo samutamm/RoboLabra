@@ -7,16 +7,16 @@ import lejos.nxt.Motor;
 import lejos.util.Delay;
 
 public class Convoyer {
-	public void moveUntilButtonPress(int speed) {
-		Button.waitForPress();
+	public void moveCoin(int speed, int rotate) {
+		Delay.msDelay(300);
 		Motor.B.setSpeed(speed);
-		//Motor.B.forward(); //tässä myötäpäivään
-		Motor.B.rotate(370);
+		Motor.B.rotate(rotate);
 		Delay.msDelay(1000);
-		Motor.B.setSpeed(speed*5);
+		Motor.B.setSpeed(speed*10);
 		Motor.B.rotate(-50);
 		Motor.B.stop();
-		LCD.drawInt(Motor.B.getTachoCount(), 0, 0);
-		Button.waitForPress();
+		Delay.msDelay(1000);
+		Motor.B.setSpeed(speed);
+		Motor.B.rotate(-(rotate - 47));
 	}
 }

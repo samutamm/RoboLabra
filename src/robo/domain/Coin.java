@@ -6,13 +6,15 @@ public class Coin {
 	public String name; 
 	public int calibrate;
 	public int value;
+	public int convoyerAngles;
 	
-	public Coin(int starts, int ends, String name, int value, int calibrate) {
+	public Coin(int starts, int ends, String name, int value, int calibrate, int convoyerAngles) {
 		this.starts = starts;
 		this.ends = ends;
 		this.name = name;
 		this.calibrate = calibrate;
 		this.value = value;
+		this.convoyerAngles = convoyerAngles;
 	}
 	
 	public int compareInputValue(int input) {

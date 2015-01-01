@@ -8,12 +8,12 @@ public class Coins {
 		
 		public Coins() {
 			this.coins = new ArrayList<Coin>();
-			coins.add(new Coin(100, 250, "10 cent", 10, 150));
-			coins.add(new Coin(251, 375, "5 cent", 5, 350));
-			coins.add(new Coin(376, 500, "20 cent", 20, 450));
-			coins.add(new Coin(501, 625, "1 euro", 100, 575));
-			coins.add(new Coin(626, 725, "50 cent", 50, 675));
-			coins.add(new Coin(726, 950, "2 euro", 200, 900));
+			coins.add(new Coin(75, 250, "10 cent", 10, 150, 400));
+			coins.add(new Coin(251, 375, "5 cent", 5, 350, 385));
+			coins.add(new Coin(376, 500, "20 cent", 20, 450, 350));
+			coins.add(new Coin(501, 625, "1 euro", 100, 575, 310));
+			coins.add(new Coin(626, 725, "50 cent", 50, 675, 245));
+			coins.add(new Coin(726, 1000, "2 euro", 200, 900, 220));
 		}
 		
 		public Coin getCorrespondingCoin(int input) {
