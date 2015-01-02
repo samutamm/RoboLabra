@@ -17,8 +17,12 @@ public class Convoyer {
 		Motor.B.stop();
 		Delay.msDelay(1000);
 		Motor.B.setSpeed(speed);
+<<<<<<< HEAD
 		//int rotateBack = -(rotate - (50 - (rotate / 200)));
 		int rotateBack = -(rotate - 50);
 		Motor.B.rotate(rotateBack);
+=======
+		Motor.B.rotate(-(rotate - 47));
+>>>>>>> 399b681cb032e3dad34ff53e4744e22c3cd3fea1
 	}
 }
