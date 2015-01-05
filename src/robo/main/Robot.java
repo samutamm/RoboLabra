@@ -6,13 +6,13 @@ import lejos.nxt.LCD;
 import lejos.nxt.LightSensor;
 import lejos.util.Delay;
 
-public class RobotInitializer {
+public class Robot {
 	
 	private Convoyer convoyer;
 	private Sorter sorter;
 	private LightSensor light;
 	
-	public RobotInitializer(Convoyer convoyer, Sorter sorter, LightSensor light) {
+	public Robot(Convoyer convoyer, Sorter sorter, LightSensor light) {
 		this.convoyer = convoyer;
 		this.sorter = sorter;
 		this.light = light;
@@ -20,7 +20,7 @@ public class RobotInitializer {
 	
 	
 	public void run() {
-		int emptyLightValue = findStartLightValue(this.light);
+		int emptyLightValue = findStartLightValue();
 		
 		LCD.drawString("Is coin ready?" , 0, 0);
 		Button.waitForPress();
@@ -33,20 +33,20 @@ public class RobotInitializer {
 			
 			LCD.drawString("Press Escape to stop or put an other coin and press Enter.", 0, 3);
 			Delay.msDelay(1000);
-			while(noNewCoinAdded(this.light) && Button.readButtons() == 0);
+			while(noNewCoinAdded() && Button.readButtons() == 0);
 		}
 	}
 	
-	private static boolean noNewCoinAdded(LightSensor light) {
+	private boolean noNewCoinAdded() {
 		Delay.msDelay(100);
-		return light.getLightValue() < 50;
+		return this.light.getLightValue() < 50;
 	}
 
-	public int findStartLightValue(LightSensor light) {
-		int emptyLightValue = light.getLightValue();
+	public int findStartLightValue() {
+		int emptyLightValue = this.light.getLightValue();
 		Delay.msDelay(100);
-		while(emptyLightValue != light.getLightValue()) {
-			emptyLightValue = light.getLightValue();
+		while(emptyLightValue != this.light.getLightValue()) {
+			emptyLightValue = this.light.getLightValue();
 			Delay.msDelay(100);
 		}
 		return emptyLightValue;

@@ -1,8 +1,7 @@
-package robo.main;
+package robo.domain;
 
 import robo.domain.*;
 import robo.Calculator.*;
-import java.util.*;
 import robo.contollers.*;
 
 import lejos.nxt.Button;
@@ -18,10 +17,10 @@ public class Sorter {
 	private Calculator calculator;
 	private MotorController motor;
 	
-	public Sorter() {
+	public Sorter(MotorController motor) {
 		this.coins = new Coins();
 		this.calculator = new Calculator();
-		this.motor = new MotorController(Motor.A);
+		this.motor = motor;
 		this.motor.setSpeed(100);
 	}
 	
@@ -45,17 +44,11 @@ public class Sorter {
 			Delay.msDelay(50);
 			this.motor.rotate(25);
 			degrees += 25;
-			//drawToLCDScreen(light);
 			if(Button.ENTER.isPressed()) return 0;
 		}
 		Delay.msDelay(50);
 		this.motor.rotate(25);
 		degrees += 25;
 		return degrees;
-	}
-	
-	public void drawToLCDScreen(LightSensor light) {
-		LCD.drawInt(light.getLightValue(), 4, 0, 0);
-		LCD.drawInt(light.getNormalizedLightValue(), 4, 0, 1);
 	}
 }

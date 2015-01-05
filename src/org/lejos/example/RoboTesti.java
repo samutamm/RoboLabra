@@ -10,7 +10,6 @@ import lejos.util.Delay;
 public class RoboTesti {
 
 	public static void main(String[] args) {
-		LCD.drawString("Hello world!", 0, 0);
-		Button.waitForPress();
+		System.out.println(Motor.class);
 	}
 }
