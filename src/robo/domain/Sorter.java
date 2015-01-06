@@ -10,14 +10,12 @@ import lejos.util.Delay;
 
 public class Sorter {
 	private Coins coins;
-	private Calculator calculator;
 	private MotorController motor;
 	private LightSensor light;
 	private int emptyLightValue;
 	
-	public Sorter(MotorController motor, Calculator calc, LightSensor light) {
+	public Sorter(MotorController motor, LightSensor light) {
 		this.coins = new Coins();
-		this.calculator = calc;
 		this.light = light;
 		this.motor = motor;
 		this.motor.setSpeed(100);
@@ -27,12 +25,9 @@ public class Sorter {
 	public Coin openPortUntilCoinFlops(int diff) {
 		int degrees = openUntilDrops(diff);
 		Coin coin = this.coins.getCorrespondingCoin(degrees);
-		this.calculator.addCoin(coin);
 		LCD.clear();
 		LCD.drawString(coin.name, 0, 0);
-		LCD.drawString("total money in cents: ", 0, 1);
-		LCD.drawInt(this.calculator.cents, 0, 2);
-		Delay.msDelay(2000);
+		Delay.msDelay(500);
 		
 		this.motor.rotate(-(coin.calibrate));
 		return coin;

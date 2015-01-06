@@ -16,11 +16,11 @@ public class Robot {
 	
 	private Convoyer convoyer;
 	private Sorter sorter;
-	private Calculator calc;
+	private Calculator calculator;
 	
 	public Robot() {
-		this.calc = new Calculator();
-		this.sorter = new Sorter(new MotorController(Motor.A), calc, new LightSensor(SensorPort.S1));
+		this.calculator = new Calculator();
+		this.sorter = new Sorter(new MotorController(Motor.A), new LightSensor(SensorPort.S1));
 		this.convoyer = new Convoyer(new MotorController(Motor.B));
 	}
 	
@@ -31,8 +31,10 @@ public class Robot {
 		
 		while(!Button.ESCAPE.isPressed()) { 
 			Coin coin = this.sorter.openPortUntilCoinFlops(2);
+			this.calculator.addCoin(coin);
 			LCD.clear();
-			
+			LCD.drawString("total money in cents: ", 0, 1);
+			LCD.drawInt(this.calculator.cents, 0, 2);
 			this.convoyer.moveCoin(50, coin.convoyerAngles);
 			
 			LCD.drawString("Press Escape to stop or put an other coin and press Enter.", 0, 3);
@@ -46,7 +48,7 @@ public class Robot {
 	public void printStatisticsAtEnd() {
 		LCD.clear();
 		LCD.drawString("Coin stats:", 0, 0);
-		List<String> coinStats = calc.getStatistics();
+		List<String> coinStats = calculator.getStatistics();
 		for(int i = 0; i < coinStats.size(); i++) {
 			LCD.drawString(coinStats.get(i), 0, i+1);
 		}
