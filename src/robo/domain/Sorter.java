@@ -1,13 +1,15 @@
 package robo.domain;
 
+import robo.domain.*;
 import robo.Calculator.*;
 import robo.contollers.*;
 
 import lejos.nxt.Button;
 import lejos.nxt.LCD;
 import lejos.nxt.LightSensor;
+import lejos.nxt.Motor;
 import lejos.util.Delay;
-
+	
 
 
 public class Sorter {

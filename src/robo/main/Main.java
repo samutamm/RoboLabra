@@ -29,5 +29,5 @@ public class Main {
 		}
 
 		Button.waitForPress();
-	}	
+	}
 }
