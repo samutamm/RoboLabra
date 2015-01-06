@@ -12,6 +12,7 @@
 	<property name="binary" value="${build}/${main.class}.nxj" />
 	<property name="debug" value="${build}/${main.class}.nxd" />
 
+	
 	<path id="lejos.pc">
 		<fileset dir="${nxj.home}/lib/pc">
 			<include name="**/*.jar" />

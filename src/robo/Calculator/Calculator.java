@@ -24,5 +24,13 @@ public class Calculator {
 			this.coinsCount.add(index, this.coinsCount.get(index)+1);
 		}
 	}
+	
+	public List<String> getStatistics() {
+		ArrayList<String> stats = new ArrayList<String>();
+		for(int i = 0; i < coinsName.size(); i++) {
+			stats.add(coinsName.get(i) + ":" + coinsCount.get(i));
+		}
+		return stats;
+	}
 
 }
