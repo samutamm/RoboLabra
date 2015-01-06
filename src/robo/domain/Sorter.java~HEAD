@@ -8,24 +8,22 @@ import lejos.nxt.LCD;
 import lejos.nxt.LightSensor;
 import lejos.util.Delay;
 
+
+
 public class Sorter {
 	private Coins coins;
 	private Calculator calculator;
 	private MotorController motor;
-	private LightSensor light;
-	private int emptyLightValue;
 	
-	public Sorter(MotorController motor, Calculator calc, LightSensor light) {
+	public Sorter(MotorController motor, Calculator calc) {
 		this.coins = new Coins();
 		this.calculator = calc;
-		this.light = light;
 		this.motor = motor;
 		this.motor.setSpeed(100);
-		this.emptyLightValue = this.findStartLightValue();
 	}
 	
-	public Coin openPortUntilCoinFlops(int diff) {
-		int degrees = openUntilDrops(diff);
+	public Coin openPortUntilCoinFlops(int diff, int emptyLightValue, LightSensor light) {
+		int degrees = openUntilDrops(diff, emptyLightValue, light);
 		Coin coin = this.coins.getCorrespondingCoin(degrees);
 		this.calculator.addCoin(coin);
 		LCD.clear();
@@ -38,9 +36,9 @@ public class Sorter {
 		return coin;
 	}
 
-	private int openUntilDrops(int diff) {
+	private int openUntilDrops(int diff, int emptyLightValue, LightSensor light) {
 		int degrees = 0;
-		while(this.emptyLightValue + diff < this.light.getLightValue()) {
+		while(emptyLightValue + diff < light.getLightValue()) {
 			Delay.msDelay(50);
 			this.motor.rotate(25);
 			degrees += 25;
@@ -50,20 +48,5 @@ public class Sorter {
 		this.motor.rotate(25);
 		degrees += 25;
 		return degrees;
-	}
-	
-	public boolean noNewCoinAdded() {
-		Delay.msDelay(100);
-		return this.light.getLightValue() < 50;
-	}
-
-	public int findStartLightValue() {
-		int emptyLightValue = this.light.getLightValue();
-		Delay.msDelay(100);
-		while(emptyLightValue != this.light.getLightValue()) {
-			emptyLightValue = this.light.getLightValue();
-			Delay.msDelay(100);
-		}
-		return emptyLightValue;
 	}
 }
