@@ -1,5 +1,4 @@
 RoboLabra
 =========
 
-Linkki loppuraporttiin:
-[a relative link](loppuraportti/loppuraportti.md)
+Linkki [loppuraporttiin](loppuraportti/loppuraportti.md)
